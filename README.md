@@ -52,7 +52,7 @@ The type of each parameter must be specified, with standard type-checking rules 
 type mismatch.
 
 # How to run the Compiler
-The compiler can be run by simply executing `typthonCompiler.py` on a `.typ` file which uses the syntax
+The compiler can be run by simply executing `typthonCompiler.py` on a `.typ` file that uses the syntax
 laid out above. Some possible flag options are:
 
 `-t` for typechecking only.
