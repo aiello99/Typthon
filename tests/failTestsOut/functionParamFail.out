@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "./typthonCompiler.py", line 71, in <module>
+    typechecker.typecheck(root)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 55, in check_File
+    child_st = self.typecheck(child, global_st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 181, in check_StmtList
+    stmtType = self.typecheck(stmt, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 326, in check_FunctionDefn
+    body_return_type = self.typecheck(node.body, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 181, in check_StmtList
+    stmtType = self.typecheck(stmt, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 199, in check_VarAssign
+    raise ParseError(
+typthonSymbolTable.ParseError: ('Variable x was declared as type int but was assigned value of str type', 3)

@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "./typthonCompiler.py", line 71, in <module>
+    typechecker.typecheck(root)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 55, in check_File
+    child_st = self.typecheck(child, global_st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 181, in check_StmtList
+    stmtType = self.typecheck(stmt, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 442, in check_DictBuiltinCall
+    raise ParseError(f"Expected Key Type: {key_type}, but recieved Type {arg_type} for dict {node.dictID}",
+typthonSymbolTable.ParseError: ('Expected Key Type: str, but recieved Type int for dict x', 3)

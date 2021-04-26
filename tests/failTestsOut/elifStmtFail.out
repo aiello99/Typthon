@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "./typthonCompiler.py", line 71, in <module>
+    typechecker.typecheck(root)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 55, in check_File
+    child_st = self.typecheck(child, global_st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 176, in check_StmtList
+    ifStmtType = self.typecheck(stmt, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 390, in check_IfStmt
+    falseBodyType = self.typecheck(node.false_body, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 11, in typecheck
+    return getattr(self, method)(node, st)
+  File "C:\Users\liams\project\sprint4\typthonTypeChecker.py", line 399, in check_ElifStmt
+    raise ParseError("Condition in Elif not of type bool.", node.coord)
+typthonSymbolTable.ParseError: ('Condition in Elif not of type bool.', 3)

@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "./typthonCompiler.py", line 63, in <module>
+    root = parser.parse(data)
+  File "C:\Users\liams\project\sprint4\typthonParser.py", line 44, in parse
+    return self.parser.parse(data)
+  File "C:\Users\liams\AppData\Local\Programs\Python\Python38\lib\site-packages\ply\yacc.py", line 333, in parse
+    return self.parseopt_notrack(input, lexer, debug, tracking, tokenfunc)
+  File "C:\Users\liams\AppData\Local\Programs\Python\Python38\lib\site-packages\ply\yacc.py", line 1201, in parseopt_notrack
+    tok = call_errorfunc(self.errorfunc, errtoken, self)
+  File "C:\Users\liams\AppData\Local\Programs\Python\Python38\lib\site-packages\ply\yacc.py", line 192, in call_errorfunc
+    r = errorfunc(token)
+  File "C:\Users\liams\project\sprint4\typthonParser.py", line 40, in p_error
+    raise SyntaxError(f"Syntax error at token {p}")
+SyntaxError: Syntax error at token LexToken(GREATER,'>',1,12)

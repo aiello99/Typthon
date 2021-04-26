@@ -1,0 +1,147 @@
+# note: '*' is 0 or more, '+' is 1 or more, '[]' is optional
+# Identifiers are similar to identifiers in Java. Identifiers start with an upper or lower case letter and may contain letters or digits, as well as underscore . Examples: sum, sum 0, I, XYZANY, CsC488s .
+# EOF represents end of file
+# Characters wrapped in quotations denote terminals. For example, the binary operation multiplication shown as "*".
+# The word 'empty' denotes the absence of the thing being defined.
+# We will use ply and hence LR-Parsing
+
+file ::= statements EOF
+
+digitLiteral ::= "0" | "1" | "2" | "3" | "4"
+        | "5" | "6" | "7" | "8" | "9"
+
+integerLiteral ::= ["-"]digitLiteral+
+
+stringLiteral ::= "'"inputCharacter+"'" | '"'inputCharacter+'"' # inputCharacter is the set of unicode characters
+
+booleanLiteral ::= "True" | "False"
+
+literal ::= integerLiteral | stringLiteral | booleanLiteral
+
+integerPrimitiveType ::= "int"
+
+stringPrimitiveType ::= "str"
+
+booleanPrimitiveType ::= "bool"
+
+nullTypePrimitiveType ::= "Type"
+
+primitiveType ::= integerPrimitiveType
+                | stringPrimitiveType
+                | booleanPrimitiveType
+                | noneTypePrimitiveType
+
+arrayType ::= "["primitiveType"]" | "["arrayType"]" | "["dictType"]"
+
+dictType ::= "dict"
+
+type ::= primitiveType | arrayType
+
+statements ::= statement statements
+             | statement
+
+statement ::= variableDeclaration
+            | variableAssignment
+            | ifStatement
+            | whileStatement
+            | returnStatement
+            | breakStatement    # only permitted within loops
+            | functionDefinition
+            | returnStatement
+            | functionCall
+            | arrayBuiltinCall
+            | variableModification
+
+variableDeclaration ::= variableName ":" primitiveType "=" expression # type of expression must match declared type
+                      | arrayVariableDeclaration
+
+arrayVariableDeclaration ::= arrayName ":" arrayType "=" "[""]"
+                           | arrayName ":" arrayType "=" "["expression ( "," expression)*"]"
+
+dictVariableDeclaration ::= dictName ":" dictType "=" "{""}"
+
+variableAssignment ::= variableName "=" expression # variableName must already be declared
+
+variableModification ::=  variableName "+=" expression # only for integer, string, and array types
+                | variableName "-=" expression # only for integer types
+                | variableName "*=" expression # only for integer types
+                | variableName "/=" expression # only for integer types
+                | variableName "%=" expression # only for integer types
+                | variableName "!=" expression # only for boolean types
+
+        
+ifStatement ::= "if" expression ":" block elifStatement
+              | "if" expression ":" block [elseStatement]
+
+elifStatement ::= "elif" expression ":" block elifStatement
+                | "elif" expression ":" block [elseStatement]
+
+elseStatement ::= "else" ":" block
+
+whileStatement ::= "while" expression ":" whileBlock
+
+breakStatement ::= "break"
+
+whileBlock ::= "{" statements [breakStatement] "}"
+
+returnStatement ::= "return" expression
+
+functionCall ::= functionName "(" arguments ")"
+
+functionDefinition ::= "def" functionName "(" parameters ")" "->" type ":" functionBlock
+
+block ::= "{" statements "}"
+
+functionBlock ::= "{ statements
+                     returnStatement "}" # function blocks must have a return statement.
+
+arguments ::= argument "," arguments
+            | argument
+
+argument ::= expression
+           | empty
+
+parameters ::= parameter "," parameters
+             | parameter
+
+parameter ::= parameterName ":" type
+            | empty
+
+expression ::= literal
+             | variableName
+             | arrayName
+             | functionCall
+             | "not" expression
+             | "-"expression # only for integer types
+             | expression "+" expression # integer or array types only 
+             | expression "-" expression # integer type only
+             | expression "*" expression # integer type only
+             | expression "/" expression # integer type only
+             | expression "and" expression # boolean types only
+             | expression "or" expression  # boolean types only
+             | expression "==" expression
+             | expression "!=" expression
+             | expression "%" expression # integer type only    
+             | expression "<" expression # integer type only
+             | expression ">" expression # integer type only
+             | expression "<=" expression # integer type only
+             | expression ">=" expression # integer type only
+             | "(" expression ")"
+             | arrayName"["expression"]" # expression must be of type integer
+             | arrayName"["expression ":" expression "]" # expressions must be of type integer
+             | dictBuiltinCall
+
+arrayBuiltinCall ::= arrayName".append""("expression")" 
+             | arrayName".remove""("expression")"
+             | arrayName".pop""("expression")"
+
+dictBuiltinCall ::= dictName".set""("variableName"," expression")
+                | dictName".get""("variableName")"
+
+# Before using an identifier it must be declared 
+variableName ::= identifier
+arrayName ::= identifier
+functionName ::= identifier
+parameterName ::= identifier
+dictName ::= identifier
+
